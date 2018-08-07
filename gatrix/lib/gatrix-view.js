@@ -5,19 +5,20 @@ export default class GatrixView {
   constructor(serializedState) {
     // Create root element
     this.element = document.createElement('div');
-    this.element.classList.add('gatrix');
+    this.element.classList.add('modalContent');
 
     // Create message element
-    const message = document.createElement('div');
-    message.textContent = 'Welcome to Gatrix Atom Package.';
-    message.classList.add('message');
-    this.element.appendChild(message);
+    const modalTitle = document.createElement('div');
+    modalTitle.textContent = 'Welcome to Gatrix Atom Package.';
+    // modalTitle.textContent = 'Welcome to Gatrix Atom Package.';
+    modalTitle.classList.add('modalTitle');
+    this.element.appendChild(modalTitle);
 
     // Create message2 element
-    const message2 = document.createElement('div');
-    message2.textContent = 'Welcome to Gatrix Atom Package 2.';
-    message2.classList.add('message');
-    this.element.appendChild(message2);
+    const modalBody = document.createElement('div');
+    modalBody.textContent = 'Loading, please wait...';
+    modalBody.classList.add('modalBody');
+    this.element.appendChild(modalBody);
   }
 
   // Returns an object that can be retrieved when package is activated
