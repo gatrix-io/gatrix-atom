@@ -2,6 +2,7 @@
 
 import GatrixView from './gatrix-view';
 import { CompositeDisposable } from 'atom';
+import request from 'request';
 
 export default {
 
@@ -56,9 +57,30 @@ export default {
     }
   },
 
+  fetchData() {
+    console.log('fetchData called');
+    let url = 'https://staging.gatrix.io/jimdou.json'
+    request(url, (error, response, body) => {
+      if (!error && response.statusCode == 200) {
+        console.log('# Data fetched!');
+        console.log(body)
+        // this.togglePanel();
+        this.displayFlashMessage();
+      }
+    })
+  },
+
+  displayFlashMessage() {
+    this.modalPanel.show()
+    setTimeout(() => {
+      this.modalPanel.hide()
+    }, 3000);
+  },
+
   toggle() {
-    this.togglePanel();
+    // this.togglePanel();
     // this.inverseSelectedText();
+    this.fetchData();
   }
 
 

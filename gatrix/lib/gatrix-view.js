@@ -9,7 +9,7 @@ export default class GatrixView {
 
     // Create message element
     const message = document.createElement('div');
-    message.textContent = 'The Gatrix package is Alive! It\'s ALIVE!';
+    message.textContent = 'Welcome to Gatrix Atom Package.';
     message.classList.add('message');
     this.element.appendChild(message);
   }
