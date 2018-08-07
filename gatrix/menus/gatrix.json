@@ -1,0 +1,31 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Gatrix",
+        "submenu": [
+          {
+            "label": "Inverse Selected Text",
+            "command": "gatrix:toggle"
+          }
+        ]
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Gatrix",
+          "submenu": [
+            {
+              "label": "Inverse Selected Text",
+              "command": "gatrix:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
