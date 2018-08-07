@@ -123,32 +123,23 @@ export default {
       let selection = editor.getSelectedText()
       this
         .fetchUser()
-        .then((content) => {
-          console.log('1')
-          editor.insertText(JSON.stringify(content))
-          console.log('2')
-          this.gatrixView.setContent(content);
-          console.log('3')
+        .then((user) => {
+          // editor.insertText(JSON.stringify(user))
+          this.gatrixView.setContent(user);
           // this.displayFlashMessage();
-          console.log('4')
         })
         .then((content) => this.fetchUserRepositories(content))
         .then((repositories) => {
-          console.log('6')
           // editor.insertText(JSON.stringify(repositories))
-          console.log('7')
           this.gatrixView.setRepositories(repositories);
-          console.log('8')
+        })
+        .then((repositories) => {
           this.displayFlashMessage();
-          console.log('9')
         })
         .catch((error) => {
-          console.log('10')
           console.log(error)
           // atom.notifications.addWarning()
-          console.log('11')
         })
-        console.log('12')
     }
 
 
