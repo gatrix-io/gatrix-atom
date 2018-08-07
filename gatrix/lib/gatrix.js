@@ -107,7 +107,7 @@ export default {
         .fetchUser()
         .then((content) => {
           editor.insertText(content)
-          this.gatrixView.setContent(content);
+          this.gatrixView.setContent(JSON.parse(content));
           this.displayFlashMessage();
         })
         .catch((error) => {

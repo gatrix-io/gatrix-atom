@@ -2,12 +2,12 @@
   "name": "Gatrix",
   "main": "./lib/gatrix",
   "version": "0.0.0",
-  "description": "Gatrix Atom Package",
+  "description": "Gatrix support for Atom.",
   "keywords": [],
   "activationCommands": {
     "atom-workspace": "gatrix:toggle"
   },
-  "repository": "git@://github.com/atom/gatrix",
+  "repository": "https://github.com/gatrix-io/gatrix-atom",
   "license": "UNLICENSED",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

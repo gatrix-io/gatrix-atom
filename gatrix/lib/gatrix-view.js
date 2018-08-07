@@ -34,8 +34,8 @@ export default class GatrixView {
   }
 
   setContent(content) {
-    // const displayText = `There are ${count} words.`;
-    this.element.children[1].textContent = content;
+    const displayText = `Welcome to Gatrix, ${content.username}`;
+    this.element.children[1].textContent = displayText;
   }
 
 }
