@@ -100,32 +100,33 @@ export default {
     // this.inverseSelectedText();
     // this.fetchData();
 
-    // let editor
-    // if (editor = atom.workspace.getActiveTextEditor()) {
-    //   let selection = editor.getSelectedText()
-    //   this
-    //     .fetchUser()
-    //     .then((content) => {
-    //       editor.insertText(content)
-    //       this.displayFlashMessage();
-    //     })
-    //     .catch((error) => {
-    //       atom.notifications.addWarning(error.reason)
-    //     })
-    // }
+    let editor
+    if (editor = atom.workspace.getActiveTextEditor()) {
+      let selection = editor.getSelectedText()
+      this
+        .fetchUser()
+        .then((content) => {
+          editor.insertText(content)
+          this.gatrixView.setContent(content);
+          this.displayFlashMessage();
+        })
+        .catch((error) => {
+          atom.notifications.addWarning(error.reason)
+        })
+    }
 
 
 
-    this
-      .fetchUser()
-      .then((content) => {
-        // editor.insertText(content)
-        this.gatrixView.setCount(content);
-        this.displayFlashMessage();
-      })
-      .catch((error) => {
-        atom.notifications.addWarning(error.reason)
-      })
+    // this
+    //   .fetchUser()
+    //   .then((content) => {
+    //     // editor.insertText(content)
+    //     this.gatrixView.setCount(content);
+    //     this.displayFlashMessage();
+    //   })
+    //   .catch((error) => {
+    //     atom.notifications.addWarning(error.reason)
+    //   })
 
   }
 
