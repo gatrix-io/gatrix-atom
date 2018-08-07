@@ -70,6 +70,21 @@ export default {
     })
   },
 
+  fetchUser() {
+    let url = 'https://staging.gatrix.io/jimdou.json'
+    return new Promise((resolve, reject) => {
+      request(url, (error, response, body) => {
+        if (!error && response.statusCode == 200) {
+          resolve(body)
+        } else {
+          reject({
+            reason: 'Unable to download page'
+          })
+        }
+      })
+    })
+  },
+
   displayFlashMessage() {
     this.modalPanel.show()
     setTimeout(() => {
@@ -80,7 +95,21 @@ export default {
   toggle() {
     // this.togglePanel();
     // this.inverseSelectedText();
-    this.fetchData();
+    // this.fetchData();
+
+    let editor
+    if (editor = atom.workspace.getActiveTextEditor()) {
+      let selection = editor.getSelectedText()
+      this
+        .fetchUser()
+        .then((content) => {
+          editor.insertText(content)
+          this.displayFlashMessage();
+        })
+        .catch((error) => {
+          atom.notifications.addWarning(error.reason)
+        })
+    }
   }
 
 
