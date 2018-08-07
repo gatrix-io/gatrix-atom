@@ -78,10 +78,28 @@ export default {
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
         if (!error && response.statusCode == 200) {
-          resolve(body)
+          console.log('# fetchUser', body)
+          // resolve(body)
+          resolve(JSON.parse(body))
         } else {
           reject({
-            reason: 'Unable to download page'
+            reason: 'Unable to complete operation.'
+          })
+        }
+      })
+    })
+  },
+
+  fetchUserRepositories() {
+    let url = 'https://staging.gatrix.io/jimdou/repositories.json'
+    return new Promise((resolve, reject) => {
+      request(url, (error, response, body) => {
+        if (!error && response.statusCode == 200) {
+          console.log('# fetchUserRepositories', body)
+          resolve(JSON.parse(body))
+        } else {
+          reject({
+            reason: 'Unable to complete operation.'
           })
         }
       })
@@ -106,13 +124,31 @@ export default {
       this
         .fetchUser()
         .then((content) => {
-          editor.insertText(content)
-          this.gatrixView.setContent(JSON.parse(content));
+          console.log('1')
+          editor.insertText(JSON.stringify(content))
+          console.log('2')
+          this.gatrixView.setContent(content);
+          console.log('3')
+          // this.displayFlashMessage();
+          console.log('4')
+        })
+        .then((content) => this.fetchUserRepositories(content))
+        .then((repositories) => {
+          console.log('6')
+          // editor.insertText(JSON.stringify(repositories))
+          console.log('7')
+          this.gatrixView.setRepositories(repositories);
+          console.log('8')
           this.displayFlashMessage();
+          console.log('9')
         })
         .catch((error) => {
-          atom.notifications.addWarning(error.reason)
+          console.log('10')
+          console.log(error)
+          // atom.notifications.addWarning()
+          console.log('11')
         })
+        console.log('12')
     }
 
 
