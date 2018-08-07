@@ -10,8 +10,11 @@ export default {
   modalPanel: null,
   subscriptions: null,
 
+  modalTitle: 'Modal Title',
+  modalBody: 'Modal Body',
+
   activate(state) {
-    this.gatrixView = new GatrixView(state.gatrixViewState, 'Hello World!');
+    this.gatrixView = new GatrixView(state.gatrixViewState);
     this.modalPanel = atom.workspace.addModalPanel({
       item: this.gatrixView.getElement(),
       visible: false
@@ -97,19 +100,33 @@ export default {
     // this.inverseSelectedText();
     // this.fetchData();
 
-    let editor
-    if (editor = atom.workspace.getActiveTextEditor()) {
-      let selection = editor.getSelectedText()
-      this
-        .fetchUser()
-        .then((content) => {
-          editor.insertText(content)
-          this.displayFlashMessage();
-        })
-        .catch((error) => {
-          atom.notifications.addWarning(error.reason)
-        })
-    }
+    // let editor
+    // if (editor = atom.workspace.getActiveTextEditor()) {
+    //   let selection = editor.getSelectedText()
+    //   this
+    //     .fetchUser()
+    //     .then((content) => {
+    //       editor.insertText(content)
+    //       this.displayFlashMessage();
+    //     })
+    //     .catch((error) => {
+    //       atom.notifications.addWarning(error.reason)
+    //     })
+    // }
+
+
+
+    this
+      .fetchUser()
+      .then((content) => {
+        // editor.insertText(content)
+        this.gatrixView.setCount(content);
+        this.displayFlashMessage();
+      })
+      .catch((error) => {
+        atom.notifications.addWarning(error.reason)
+      })
+
   }
 
 

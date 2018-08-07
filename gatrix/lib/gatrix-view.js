@@ -2,15 +2,14 @@
 
 export default class GatrixView {
 
-  constructor(serializedState, text) {
+  constructor(serializedState) {
     // Create root element
     this.element = document.createElement('div');
     this.element.classList.add('gatrix');
 
     // Create message element
     const message = document.createElement('div');
-    // message.textContent = 'Welcome to Gatrix Atom Package.';
-    message.textContent = text;
+    message.textContent = 'Welcome to Gatrix Atom Package.';
     message.classList.add('message');
     this.element.appendChild(message);
   }
@@ -25,6 +24,11 @@ export default class GatrixView {
 
   getElement() {
     return this.element;
+  }
+
+  setCount(content) {
+    // const displayText = `There are ${count} words.`;
+    this.element.children[0].textContent = content;
   }
 
 }
