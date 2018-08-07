@@ -11,7 +11,7 @@ export default {
   subscriptions: null,
 
   activate(state) {
-    this.gatrixView = new GatrixView(state.gatrixViewState);
+    this.gatrixView = new GatrixView(state.gatrixViewState, 'Hello World!');
     this.modalPanel = atom.workspace.addModalPanel({
       item: this.gatrixView.getElement(),
       visible: false

@@ -5,7 +5,7 @@
         "label": "Gatrix",
         "submenu": [
           {
-            "label": "Inverse Selected Text",
+            "label": "Toggle",
             "command": "gatrix:toggle"
           }
         ]
@@ -20,7 +20,7 @@
           "label": "Gatrix",
           "submenu": [
             {
-              "label": "Inverse Selected Text",
+              "label": "Toggle",
               "command": "gatrix:toggle"
             }
           ]

@@ -1,1 +1,1 @@
-# gatrix-atom
+# Gatrix support for Atom.

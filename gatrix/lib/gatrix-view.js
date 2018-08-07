@@ -2,14 +2,15 @@
 
 export default class GatrixView {
 
-  constructor(serializedState) {
+  constructor(serializedState, text) {
     // Create root element
     this.element = document.createElement('div');
     this.element.classList.add('gatrix');
 
     // Create message element
     const message = document.createElement('div');
-    message.textContent = 'Welcome to Gatrix Atom Package.';
+    // message.textContent = 'Welcome to Gatrix Atom Package.';
+    message.textContent = text;
     message.classList.add('message');
     this.element.appendChild(message);
   }
