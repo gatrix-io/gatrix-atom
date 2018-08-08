@@ -42,7 +42,7 @@ export default {
   },
 
   togglePanel() {
-    console.log('Gatrix was toggled!');
+    console.log('togglePanel called');
     return (
       this.modalPanel.isVisible() ?
       this.modalPanel.hide() :
@@ -50,27 +50,24 @@ export default {
     );
   },
 
+  inverseText() {
+    console.log('inverseAllText called');
+    let editor
+    if (editor = atom.workspace.getActiveTextEditor()) {
+      let selection = editor.getText()
+      let reversed = selection.split('').reverse().join('')
+      editor.setText(reversed)
+    }
+  },
+
   inverseSelectedText() {
-    console.log('Gatrix was toggled!');
+    console.log('inverseSelectedText called');
     let editor
     if (editor = atom.workspace.getActiveTextEditor()) {
       let selection = editor.getSelectedText()
       let reversed = selection.split('').reverse().join('')
       editor.insertText(reversed)
     }
-  },
-
-  fetchData() {
-    console.log('fetchData called');
-    let url = 'https://staging.gatrix.io/jimdou.json'
-    request(url, (error, response, body) => {
-      if (!error && response.statusCode == 200) {
-        console.log('# Data fetched!');
-        console.log(body)
-        // this.togglePanel();
-        this.displayFlashMessage();
-      }
-    })
   },
 
   fetchUser() {
@@ -106,6 +103,10 @@ export default {
     })
   },
 
+  displayMessage() {
+    this.modalPanel.show()
+  },
+
   displayFlashMessage() {
     this.modalPanel.show()
     setTimeout(() => {
@@ -134,6 +135,8 @@ export default {
           this.gatrixView.setRepositories(repositories);
         })
         .then((repositories) => {
+          // this.displayFlashMessage();
+          this.inverseText();
           this.displayFlashMessage();
         })
         .catch((error) => {
@@ -143,17 +146,6 @@ export default {
     }
 
 
-
-    // this
-    //   .fetchUser()
-    //   .then((content) => {
-    //     // editor.insertText(content)
-    //     this.gatrixView.setCount(content);
-    //     this.displayFlashMessage();
-    //   })
-    //   .catch((error) => {
-    //     atom.notifications.addWarning(error.reason)
-    //   })
 
   }
 

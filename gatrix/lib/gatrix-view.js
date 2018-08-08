@@ -19,6 +19,12 @@ export default class GatrixView {
     modalBody.textContent = 'Loading, please wait...';
     modalBody.classList.add('modalBody');
     this.element.appendChild(modalBody);
+
+    // Create modalImage element
+    const modalImage = document.createElement('img');
+    modalImage.src = 'Loading, please wait...';
+    modalImage.classList.add('modalImage');
+    this.element.appendChild(modalImage);
   }
 
   // Returns an object that can be retrieved when package is activated
@@ -43,8 +49,8 @@ export default class GatrixView {
     if (repositories.length > 0) {
       displayText = `You have ${repositories.length} repositories: `;
       repositories.map((repository, index) => {
+        displayText += '  - '
         displayText += repository.name
-        displayText += ', '
       })
     } else {
       displayText = `You have no repository yet.`;
