@@ -14,12 +14,17 @@ export default {
   modalBody: 'Modal Body',
 
   activate(state) {
+
+    console.log('Gatrix APM started');
+
     this.gatrixView = new GatrixView(state.gatrixViewState);
     this.modalPanel = atom.workspace.addModalPanel({
       item: this.gatrixView.getElement(),
       visible: false
     });
 
+
+    // Trigger to lazy start app
     // Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     this.subscriptions = new CompositeDisposable();
 
@@ -27,6 +32,15 @@ export default {
     this.subscriptions.add(atom.commands.add('atom-workspace', {
       'gatrix:toggle': () => this.toggle()
     }));
+
+
+
+    // Start app at launch
+
+
+
+
+
   },
 
   deactivate() {

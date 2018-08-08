@@ -21,10 +21,10 @@ export default class GatrixView {
     this.element.appendChild(modalBody);
 
     // Create modalImage element
-    const modalImage = document.createElement('img');
-    modalImage.src = 'Loading, please wait...';
-    modalImage.classList.add('modalImage');
-    this.element.appendChild(modalImage);
+    // const modalImage = document.createElement('img');
+    // modalImage.src = 'Loading, please wait...';
+    // modalImage.classList.add('modalImage');
+    // this.element.appendChild(modalImage);
   }
 
   // Returns an object that can be retrieved when package is activated

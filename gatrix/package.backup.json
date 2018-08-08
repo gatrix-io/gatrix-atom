@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "description": "Gatrix support for Atom.",
   "keywords": [],
+  "activationCommands": {
+    "atom-workspace": "gatrix:toggle"
+  },
   "repository": "https://github.com/gatrix-io/gatrix-atom",
   "license": "UNLICENSED",
   "engines": {
