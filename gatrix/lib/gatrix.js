@@ -27,7 +27,6 @@ export default {
       visible: false
     });
 
-
     // Trigger to lazy start app
     // Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     this.subscriptions = new CompositeDisposable();
@@ -37,13 +36,8 @@ export default {
       'gatrix:toggle': () => this.toggle()
     }));
 
-
-
-    // Start app at launch
+    // Init app
     this.init()
-
-
-
 
   },
 
