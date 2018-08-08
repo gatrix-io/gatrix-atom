@@ -9,14 +9,14 @@ export default class GatrixView {
 
     // Create message element
     const modalTitle = document.createElement('div');
-    modalTitle.textContent = 'Welcome to Gatrix Atom Package.';
+    modalTitle.textContent = 'Welcome to Gatrix.';
     // modalTitle.textContent = 'Welcome to Gatrix Atom Package.';
     modalTitle.classList.add('modalTitle');
     this.element.appendChild(modalTitle);
 
     // Create message2 element
     const modalBody = document.createElement('div');
-    modalBody.textContent = 'Loading, please wait...';
+    modalBody.textContent = '';
     modalBody.classList.add('modalBody');
     this.element.appendChild(modalBody);
 

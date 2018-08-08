@@ -20,7 +20,7 @@
           "label": "Gatrix",
           "submenu": [
             {
-              "label": "Toggle",
+              "label": "Toggle Encryption",
               "command": "gatrix:toggle"
             }
           ]

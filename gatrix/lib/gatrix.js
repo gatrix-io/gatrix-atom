@@ -36,7 +36,7 @@ export default {
 
 
     // Start app at launch
-
+    this.init()
 
 
 
@@ -85,7 +85,7 @@ export default {
   },
 
   fetchUser() {
-    let url = 'https://staging.gatrix.io/jimdou.json'
+    let url = 'https://api.gatrix.io/jimdou.json'
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
         if (!error && response.statusCode == 200) {
@@ -102,7 +102,7 @@ export default {
   },
 
   fetchUserRepositories() {
-    let url = 'https://staging.gatrix.io/jimdou/repositories.json'
+    let url = 'https://api.gatrix.io/jimdou/repositories.json'
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
         if (!error && response.statusCode == 200) {
@@ -128,39 +128,24 @@ export default {
     }, 3000);
   },
 
+  init() {
+    console.log('init called');
+    this.fetchUser()
+      .then((user) => {
+        this.gatrixView.setContent(user)
+        this.displayFlashMessage()
+        // this.fetchUserRepositories(user)
+      })
+      // .then((repositories) => this.gatrixView.setRepositories(repositories))
+      // .then(() => this.displayFlashMessage())
+      .catch((error) => {
+        console.log(error)
+        // atom.notifications.addWarning()
+      })
+  },
+
   toggle() {
-    // this.togglePanel();
-    // this.inverseSelectedText();
-    // this.fetchData();
-
-    let editor
-    if (editor = atom.workspace.getActiveTextEditor()) {
-      let selection = editor.getSelectedText()
-      this
-        .fetchUser()
-        .then((user) => {
-          // editor.insertText(JSON.stringify(user))
-          this.gatrixView.setContent(user);
-          // this.displayFlashMessage();
-        })
-        .then((content) => this.fetchUserRepositories(content))
-        .then((repositories) => {
-          // editor.insertText(JSON.stringify(repositories))
-          this.gatrixView.setRepositories(repositories);
-        })
-        .then((repositories) => {
-          // this.displayFlashMessage();
-          this.inverseText();
-          this.displayFlashMessage();
-        })
-        .catch((error) => {
-          console.log(error)
-          // atom.notifications.addWarning()
-        })
-    }
-
-
-
+    this.inverseText();
   }
 
 
