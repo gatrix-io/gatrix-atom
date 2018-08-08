@@ -40,11 +40,12 @@ export default class GatrixView {
   }
 
   setContent(content) {
-    const displayText = `Welcome to Gatrix, ${content.username}`;
+    const displayText = `Welcome to Gatrix, ${content.username}.`;
     this.element.children[0].textContent = displayText;
   }
 
   setRepositories(repositories) {
+    console.log('repositories', repositories)
     let displayText
     if (repositories.length > 0) {
       displayText = `You have ${repositories.length} repositories: `;

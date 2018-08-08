@@ -3,6 +3,10 @@
 import GatrixView from './gatrix-view';
 import { CompositeDisposable } from 'atom';
 import request from 'request';
+import fs from 'fs';
+import os from 'os';
+
+const API_BASE_URL = 'https://api.gatrix.io/';
 
 export default {
 
@@ -15,7 +19,7 @@ export default {
 
   activate(state) {
 
-    console.log('Gatrix APM started');
+    console.log('Gatrix started');
 
     this.gatrixView = new GatrixView(state.gatrixViewState);
     this.modalPanel = atom.workspace.addModalPanel({
@@ -84,8 +88,9 @@ export default {
     }
   },
 
-  fetchUser() {
-    let url = 'https://api.gatrix.io/jimdou.json'
+  fetchUser(username) {
+    // let url = 'https://api.gatrix.io/jimdou.json';
+    const url = `${API_BASE_URL}/${username}.json`;
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
         if (!error && response.statusCode == 200) {
@@ -101,8 +106,9 @@ export default {
     })
   },
 
-  fetchUserRepositories() {
-    let url = 'https://api.gatrix.io/jimdou/repositories.json'
+  fetchUserRepositories(username) {
+    // let url = 'https://api.gatrix.io/jimdou/repositories.json'
+    const url = `${API_BASE_URL}/${username}/repositories.json`;
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
         if (!error && response.statusCode == 200) {
@@ -128,20 +134,32 @@ export default {
     }, 3000);
   },
 
+  displayWelcomeMessage(user) {
+    this.gatrixView.setContent(user)
+    this.displayFlashMessage()
+  },
+
   init() {
     console.log('init called');
-    this.fetchUser()
-      .then((user) => {
-        this.gatrixView.setContent(user)
-        this.displayFlashMessage()
-        // this.fetchUserRepositories(user)
-      })
-      // .then((repositories) => this.gatrixView.setRepositories(repositories))
-      // .then(() => this.displayFlashMessage())
-      .catch((error) => {
-        console.log(error)
-        // atom.notifications.addWarning()
-      })
+    const homedir = os.homedir();
+    const usernameDir = path.join(homedir, '/.gatrix/refs/user')
+    try {
+      const username = fs.readFileSync(usernameDir, 'utf8').replace(/\r?\n|\r/g, '');
+      console.log('username', username);
+      this.fetchUser(username)
+        .then((user) => {
+          this.displayWelcomeMessage(user)
+          // this.fetchUserRepositories(username)
+        })
+        // .then((repositories) => this.gatrixView.setRepositories(repositories))
+        // .then(() => this.displayFlashMessage())
+        .catch((error) => {
+          console.log(error)
+          // atom.notifications.addWarning()
+        })
+    } catch (e) {
+      console.log('No Gatrix user info.', e)
+    }
   },
 
   toggle() {
