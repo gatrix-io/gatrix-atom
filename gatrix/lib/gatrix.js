@@ -83,7 +83,6 @@ export default {
   },
 
   fetchUser(username) {
-    // let url = 'https://api.gatrix.io/jimdou.json';
     const url = `${API_BASE_URL}/${username}.json`;
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
@@ -101,7 +100,6 @@ export default {
   },
 
   fetchUserRepositories(username) {
-    // let url = 'https://api.gatrix.io/jimdou/repositories.json'
     const url = `${API_BASE_URL}/${username}/repositories.json`;
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
